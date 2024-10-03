@@ -13,17 +13,12 @@ const LoginForm = () => {
 
   const handleChange = (e) => {
     const name = e.target.name;
-    const email = e.target.email;
-    const numMonths = e.target.numMonths;
-    const insurance = e.target.insurance;
+
     const value = e.target.type == 'checkbox' ? e.target.checked : e.target.value
 
     setForm(prevForm => ({
       ...prevForm,
       [name]: value,
-      [email]: value,
-      [numMonths]: value,
-      [insurance]: value
     }))
   };
 
@@ -40,7 +35,7 @@ const LoginForm = () => {
         </label> */}
         <label>
           Username:
-          <input name='name' type="text" value={form.name} onChange={handleChange} />
+          <input name='username' type="text" value={form.username} onChange={handleChange} />
         </label>
         <td></td>
         <label>
@@ -54,13 +49,13 @@ const LoginForm = () => {
         </label>
         <td></td>
         <label>
-          Insurance:
-          <input name='insurance' type="checkbox" value={form.insurance} checked={form.insruance} onChange={handleChange} />
+          Insurance:  
+          <input name='insurance' type="checkbox" value={form.insurance} checked={form.insurance} onChange={handleChange} />
         </label>
         <td></td>
         <input type="submit" value="Submit" />
       </form>
-      {form.receiveNewsletter}
+      {`Hi, ${form.username}! You have selected a ${form.numMonths} month contract ${form.insurance ? 'with' : 'without'} insurance`}
     </>
   );
 }
