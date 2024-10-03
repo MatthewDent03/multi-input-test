@@ -33,7 +33,7 @@ const TodoList = () => {
     }
 
     const TodoItems = list.map((item, index) => {
-        return <TodoItem key={item.id} text={item.text} done={item.done} markAsDone={markAsDone}/>
+        return <TodoItem id={item.id} key={item.id} text={item.text} done={item.done} markAsDone={markAsDone}/>
     })
     return (<Card>
         <CardHeader>TodoList</CardHeader>
