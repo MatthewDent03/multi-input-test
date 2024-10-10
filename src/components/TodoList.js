@@ -29,6 +29,7 @@ const TodoList = () => {
     // In this case, we're using an array of objects to start off with
     const [list, setList] = useState(initialValue)
 
+    const [inputValue, setInputValue] = useState("");
 
     // Our component hierarchy goes App -> TodoList -> TodoItem
     // In order to notify the TodoList of a change to a TodoItem
@@ -46,6 +47,19 @@ const TodoList = () => {
 
         // We then overwrite the previous list with our new list (which is the same, apart from the one item which has been set to 'done')
         setList(newList)
+    }
+
+    const addTodo = (e) => {
+        const newTodo = {
+            text: inputValue,
+            done: false,
+            id: list.length + 1
+        }
+
+        setList([
+            ... list,
+            newTodo
+        ])
     }
 
 
@@ -71,7 +85,8 @@ const TodoList = () => {
                 </ListGroup>
             </Card.Body>
             <Card.Footer>
-                <Button variant='primary' className='float-end'>Add</Button>
+                <input value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
+                <Button onClick={addTodo} variant='primary' className='float-end'>Add</Button>
             </Card.Footer>
         </Card>
     )
