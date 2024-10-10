@@ -1,5 +1,5 @@
 import { Button, Card, ListGroup } from 'react-bootstrap'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 // TodoItem uses 'export default', so we don't need curly brackets when importing it
 // If it used 'export const', we would need curly brackets
@@ -24,11 +24,26 @@ const TodoList = () => {
         }
     ]
 
+
+
     // We've seen how we can provide useState with an initial value
     // Sometimes that's been an empty array [], an empty form object {email: '', newsletter: false}, or just a number
     // In this case, we're using an array of objects to start off with
-    const [list, setList] = useState(initialValue)
+    const [list, setList] = useState(() => {
+        const localList = localStorage.getItem('list')
+        if(localList){
+            return JSON.parse(localList)
+        } else {
+            return initialValue;
+        }
+    })
 
+
+    useEffect(() => {
+        localStorage.setItem('list', JSON.stringify(list))
+    }, [list])
+
+    
     const [inputValue, setInputValue] = useState("");
 
     // Our component hierarchy goes App -> TodoList -> TodoItem

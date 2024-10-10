@@ -1,0 +1,21 @@
+{
+    "first_name": "Joe",
+    "last_name": "Bloggs",
+    "age": 35,
+    "hobbies": [
+        "Gym",
+        "Birdwatching"
+    ],
+    "friends": [
+        {
+            "first_name": "Jim",
+            "last_name": "Bloggs",
+            "age": 50,
+            "hobbies": [
+            ],
+            "friends": [
+                null
+            ]
+        }
+    ]
+}
