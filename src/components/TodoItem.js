@@ -1,9 +1,9 @@
-import { ListGroup, Badge } from 'react-bootstrap'
+import { ListGroup, Badge } from 'react-bootstrap';
 
 const TodoItem = (props) => {
     // This is object destructuring
     // We're pulling out each value from the 'props' object in a single line
-    const { text, done, id, markAsDone } = props
+    const { text, done, id, markAsDone, deleteTodo } = props
 
     // It would be the same thing if we did it this way:
     // const text = props.text;
@@ -22,10 +22,11 @@ const TodoItem = (props) => {
                     <>
                         {text}
                         {/* Remember, we use this anonymous function '() => {}' instead of 'markAsDone(id)' to prevent react from immediately calling this function, which would cause an infinite loop of re-renders */}
-                        <Badge onClick={() => markAsDone(id)} pill bg='success' className='float-end'>&#10003;</Badge>
+                        <Badge onClick={() => markAsDone(id)} pill bg='success' className='float-end'>✔️</Badge>
                     </>
                 )
             }
+            <Badge onClick={() => deleteTodo(id)} pill bg="dark" className='float-end'>❌</Badge>
         </ListGroup.Item>
     )
 }

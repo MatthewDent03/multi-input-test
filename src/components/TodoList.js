@@ -57,11 +57,17 @@ const TodoList = () => {
         }
 
         setList([
-            ... list,
+            ...list,
             newTodo
         ])
+
+        setInputValue("")
     }
 
+
+    const deleteTodo = (id) => {
+        setList(list.filter((todo) => todo.id !== id))
+    }
 
     const todoItems = list.map((item, index) => {
         // We use a key to uniquely identify each item in our list
@@ -72,9 +78,16 @@ const TodoList = () => {
                 text={item.text}
                 done={item.done}
                 markAsDone={markAsDone}
+                deleteTodo={deleteTodo}
             />
         )
     });
+
+    const handleKeyUp = (e) => {
+        if(e.key === 'Enter'){
+            addTodo();
+        }
+    }
 
     return (
         <Card>
@@ -85,7 +98,7 @@ const TodoList = () => {
                 </ListGroup>
             </Card.Body>
             <Card.Footer>
-                <input value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
+                <input value={inputValue} onKeyUp={handleKeyUp} onChange={(e) => setInputValue(e.target.value)}/>
                 <Button onClick={addTodo} variant='primary' className='float-end'>Add</Button>
             </Card.Footer>
         </Card>
